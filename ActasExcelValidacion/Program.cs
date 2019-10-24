@@ -93,11 +93,7 @@ namespace ActasExcelValidacion
             Console.WriteLine($"CC: {CC}, \t\t { ccPercent }%");
             Console.WriteLine($"MAS: {MAS}, \t\t { masPercent }%");
 
-            Console.WriteLine($"Diff: {masPercent - ccPercent}");
-            //*/
-
-            Console.WriteLine("Done.");
-            //Console.ReadKey();
+            Console.WriteLine($"Diferencia: {masPercent - ccPercent} %");
         }
     }
 }
