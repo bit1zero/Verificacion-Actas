@@ -10,7 +10,7 @@ namespace ActasExcelValidacion
         static void Main(string[] args)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            string filePath = @"c:\actas\acta.2019.10.24.17.22.43.xlsx";
+            string filePath = @"c:\actas\acta.2019.10.24.20.13.43.xlsx";
             if (args.Length > 0)
             {
                 filePath = args[0];
@@ -18,10 +18,10 @@ namespace ActasExcelValidacion
             var actas = Mapper.ExcelToList(filePath);
 
             var actasPresidenciales = actas.Where(a => a.Eleccion.Contains("Presidente")).ToList();
-            Console.WriteLine($"Total presidenciales: {actasPresidenciales.Count}");
+            Console.WriteLine($"Total presidenciales: {actasPresidenciales.Count}\\");
             var masPorcentajeAltos = new List<Acta>();
 
-            Console.WriteLine("calculando totales...");
+            Console.WriteLine("calculando totales...\\");
 
             double totalCalculado = 0;
             double totalValidos = 0;
@@ -72,15 +72,15 @@ namespace ActasExcelValidacion
                 nulos += a.Nulos;
                 totalValidos += a.Validos;
             }
-            Console.WriteLine($"Total con errores: {actasErroneas.Count}");
-            System.Console.WriteLine("Fila, Departamento, Numero Mesa, Codigo Mesa, Calculado/Registrado");
+            Console.WriteLine($"Total con errores: {actasErroneas.Count}\\");
+            Console.WriteLine("Fila, Departamento, Provincia, Municipio, Recinto, Numero Mesa, Codigo Mesa, Calculado/Registrado\\");
             foreach (var a in actasErroneas)
             {
                 var calculado = a.CC + a.FPV + a.MTS + a.UCS + a.MAS + a.F21 + a.PDC + a.MNR + a.PAN;
-                Console.WriteLine($"{a.RowId}, {a.Departamento}, {a.NumeroMesa}, {a.CodigoMesa} :{calculado}/{a.Validos}");
+                Console.WriteLine($"{a.RowId}, {a.Departamento}, {a.Provincia}, {a.Municipio}, {a.Recinto}, {a.NumeroMesa}, {a.CodigoMesa} :{calculado}/{a.Validos}\\");
             }
 
-            Console.WriteLine($"MAS > {100 * highPercentage}%: {masPorcentajeAltos.Count} actas");
+            Console.WriteLine($"MAS > {100 * highPercentage}%: {masPorcentajeAltos.Count} actas\\");
             //foreach (var a in masPorcentajeAltos)
             //{
             //    Console.WriteLine($"{a.RowId}, {a.Departamento}, {a.Municipio}, {a.NumeroMesa}, : {(100.00 * ((double)a.MAS / (double)a.Validos)):0.##}%");
@@ -88,12 +88,12 @@ namespace ActasExcelValidacion
 
             var ccPercent = (CC / totalCalculado) * 100;
             var masPercent = (MAS / totalCalculado) * 100;
-            Console.WriteLine($"Total de validos: {totalValidos}");
-            Console.WriteLine($"Total validos (calculado): {totalCalculado}");
-            Console.WriteLine($"CC: {CC}, \t\t { ccPercent }%");
-            Console.WriteLine($"MAS: {MAS}, \t\t { masPercent }%");
+            Console.WriteLine($"Total de validos: {totalValidos}\\");
+            Console.WriteLine($"Total validos (calculado): {totalCalculado}\\");
+            Console.WriteLine($"CC: {CC}, \t\t { ccPercent }%\\");
+            Console.WriteLine($"MAS: {MAS}, \t\t { masPercent }%\\");
 
-            Console.WriteLine($"Diferencia: {masPercent - ccPercent} %");
+            Console.WriteLine($"Diferencia: {masPercent - ccPercent} %\\");
         }
     }
 }
