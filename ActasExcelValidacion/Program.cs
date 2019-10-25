@@ -10,7 +10,7 @@ namespace ActasExcelValidacion
         static void Main(string[] args)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            string filePath = @"c:\actas\acta.2019.10.24.20.13.43.xlsx";
+            string filePath = @"..\data\actas\acta.2019.10.24.20.13.43.xlsx";
             if (args.Length > 0)
             {
                 filePath = args[0];
