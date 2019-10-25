@@ -10,7 +10,7 @@ namespace ActasExcelValidacion
         static void Main(string[] args)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            string filePath = @"..\data\actas\acta.2019.10.24.20.13.43.xlsx";
+            string filePath = @"..\data\actas\acta.2019.10.25.16.36.30.xlsx";
             if (args.Length > 0)
             {
                 filePath = args[0];
@@ -73,11 +73,11 @@ namespace ActasExcelValidacion
                 totalValidos += a.Validos;
             }
             Console.WriteLine($"Total con errores: {actasErroneas.Count}\\");
-            Console.WriteLine("Fila, Departamento, Provincia, Municipio, Recinto, Numero Mesa, Codigo Mesa, Calculado/Registrado\\");
+            Console.WriteLine("Fila, Departamento, Provincia, Municipio, Recinto, Numero Mesa, Calculado/Registrado\\");
             foreach (var a in actasErroneas)
             {
                 var calculado = a.CC + a.FPV + a.MTS + a.UCS + a.MAS + a.F21 + a.PDC + a.MNR + a.PAN;
-                Console.WriteLine($"{a.RowId}, {a.Departamento}, {a.Provincia}, {a.Municipio}, {a.Recinto}, {a.NumeroMesa}, {a.CodigoMesa} :{calculado}/{a.Validos}\\");
+                Console.WriteLine($"{a.RowId}, {a.Departamento}, {a.Provincia}, {a.Municipio}, {a.Recinto}, {a.NumeroMesa} :{calculado}/{a.Validos}\\");
             }
 
             Console.WriteLine($"MAS > {100 * highPercentage}%: {masPorcentajeAltos.Count} actas\\");
@@ -88,10 +88,10 @@ namespace ActasExcelValidacion
 
             var ccPercent = (CC / totalCalculado) * 100;
             var masPercent = (MAS / totalCalculado) * 100;
-            Console.WriteLine($"Total de validos: {totalValidos}\\");
-            Console.WriteLine($"Total validos (calculado): {totalCalculado}\\");
-            Console.WriteLine($"CC: {CC}, \t\t { ccPercent }%\\");
-            Console.WriteLine($"MAS: {MAS}, \t\t { masPercent }%\\");
+            Console.WriteLine($"Total de validos: {totalValidos:n0}\\");
+            Console.WriteLine($"Total validos (calculado): {totalCalculado:n0}\\");
+            Console.WriteLine($"CC: {CC:n0}, \t\t { ccPercent }%\\");
+            Console.WriteLine($"MAS: {MAS:n0}, \t\t { masPercent }%\\");
 
             Console.WriteLine($"Diferencia: {masPercent - ccPercent} %\\");
         }
